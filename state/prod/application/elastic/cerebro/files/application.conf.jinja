@@ -1,0 +1,27 @@
+{% set data = salt['pillar.get']('elastic:cerebro:config:application') -%}
+secret = "{{ data['secret'] }}"
+
+basePath = "{{ data['basePath'] }}"
+
+rest.history.size: {{ data['rest']['history']['size'] }}
+data.path: "./cerebro.db"
+
+hosts = [
+{% for hosts in data['hosts'] %}
+    {
+        host = "{{ hosts['host'] }}"
+        name = "{{ hosts['name'] }}"
+    }{% if loop.last != True %},{% endif %}
+
+{% endfor %}
+]
+
+auth {
+{% if data['auth']['type'] == 'basic' %}
+    type: {{ data['auth']['type'] }}
+    settings: {
+        username = "{{ data['auth']['settings']['username'] }}"
+        password = "{{ data['auth']['settings']['password'] }}"
+    }
+{% endif %}
+}

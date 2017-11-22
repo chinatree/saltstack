@@ -1,0 +1,8 @@
+default_include: master.d/*.conf
+interface: 0.0.0.0
+max_open_files: 100000
+worker_threads: 2
+log_file: /var/log/salt/master
+key_logfile: /var/log/salt/key
+hash_type: sha256
+jinja_trim_blocks: True

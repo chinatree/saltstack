@@ -1,0 +1,27 @@
+{% set data = salt['pillar.get']('elastic:filebeat') -%}
+filebeat:
+  # 每 1024 条数据发送一次
+  spool_size: {{ data['filebeat']['spool_size'] }}
+  # 每 5 秒发送一次
+  idle_timeout: "{{ data['filebeat']['idle_timeout'] }}"
+  prospectors:
+{% for prospector in data['config']['filebeat']['prospectors'] %}
+    -
+      paths:
+{% for path in prospector['paths'] %}
+        - {{ path }}
+{% endfor %}
+      fields:
+{% for fields in prospector['fields'] %}
+{% for k, v in fields.items() %}
+        {{ k }}: {{ v }}
+{% endfor %}
+{% endfor %}
+      fields_under_root: {{ prospector['fields_under_root'] }}
+{% endfor %}
+
+output:
+  logstash:
+    hosts: {{ data['output']['logstash']['hosts'] }}
+    loadbalance: {{ data['output']['logstash']['loadbalance'] }}
+    worker: {{ data['output']['logstash']['worker'] }}

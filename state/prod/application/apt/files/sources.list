@@ -1,0 +1,15 @@
+# Ubuntu {{ grains['lsb_distrib_release'] }} {{ grains['lsb_distrib_codename'] }}
+deb http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }} main restricted
+deb-src http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }} main restricted
+deb http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }}-updates main restricted
+deb-src http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }}-updates main restricted
+deb http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }} universe
+deb-src http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }} universe
+deb http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }}-updates universe
+deb-src http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }}-updates universe
+deb http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }} multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }} multiverse
+deb http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }}-updates multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }}-updates multiverse
+deb http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }}-backports main restricted universe multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu {{ grains['lsb_distrib_codename'] }}-backports main restricted universe multiverse

@@ -1,0 +1,37 @@
+{% set data = salt['pillar.get']('elastic:elasticsearch:elasticsearch') -%}
+# {{ grains['id']}}
+cluster:
+  name: {{ data['cluster']['name'] }}
+
+node:
+  name: {{ data['node']['name'] }}
+  master: {{ data['node']['master'] }}
+  data: {{ data['node']['data'] }}
+  attr:
+    tag: {{ data['node']['attr']['tag'] }}
+
+path:
+  data: {{ data['path']['data'] }}
+  repo: {{ data['path']['repo'] }}
+
+bootstrap:
+  memory_lock: {{ data['bootstrap']['memory_lock'] }}
+
+network:
+  host: {{ data['network']['host'] }}
+
+http:
+  port: {{ data['http']['port'] }}
+  max_initial_line_length: {{ data['http']['max_initial_line_length'] }}
+
+discovery:
+  zen:
+    ping:
+      unicast:
+        hosts: {{ data['discovery']['zen']['ping']['unicast']['hosts'] }}
+    minimum_master_nodes: {{ data['discovery']['zen']['minimum_master_nodes'] }}
+
+indices:
+  store:
+    throttle:
+      max_bytes_per_sec: {{ data['indices']['store']['throttle']['max_bytes_per_sec'] }}

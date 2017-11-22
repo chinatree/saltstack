@@ -1,0 +1,31 @@
+net:
+    port: {{ instance['net']['port'] }}
+
+security:
+    authorization: {{ data['security']['authorization'] }}
+    keyFile: "{{ data['security']['keyFile'] }}"
+
+storage:
+    journal:
+        enabled: {{ global_data['storage']['journal']['enabled'] }}
+    dbPath: "{{ global_data['storage']['dbPath_prefix'] }}/{{ replSetName }}_{{ instance['role'] }}"
+    directoryPerDB: {{ global_data['storage']['directoryPerDB'] }}
+    engine: {{ global_data['storage']['engine'] }}
+    wiredTiger:
+        engineConfig:
+            directoryForIndexes: {{ global_data['storage']['wiredTiger']['engineConfig']['directoryForIndexes'] }}
+        collectionConfig:
+            blockCompressor: {{ global_data['storage']['wiredTiger']['collectionConfig']['blockCompressor'] }}
+        indexConfig:
+            prefixCompression: {{ global_data['storage']['wiredTiger']['indexConfig']['prefixCompression'] }}
+
+systemLog:
+    path: "{{ global_data['systemLog']['path_prefix'] }}/{{ replSetName }}_{{ instance['role'] }}.log"
+    logAppend: {{ global_data['systemLog']['logAppend'] }}
+    destination: {{ global_data['systemLog']['destination'] }}
+
+processManagement:
+    fork: {{ global_data['processManagement']['fork'] }}
+
+replication:
+    replSetName: {{ replSetName }}

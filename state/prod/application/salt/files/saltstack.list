@@ -1,0 +1,2 @@
+# repo.saltstack.com
+deb http://repo.saltstack.com/apt/ubuntu/{{ grains['lsb_distrib_release'] }}/{{ grains['osarch'] }}/latest {{ grains['lsb_distrib_codename'] }} main

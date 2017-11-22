@@ -1,0 +1,14 @@
+{% set data = salt['pillar.get']('elastic:cerebro:config:reference') -%}
+secret = "{{ data['play']['crypto']['secret'] }}"
+
+play.crypto.secret = ${secret}
+play.i18n.langs = ["en"]
+
+basePath = "{{ data['basePath'] }}"
+play.http.context = ${basePath}
+
+data.path = "{{ data['data']['path'] }}"
+slick.dbs.default.driver = "slick.driver.SQLiteDriver$"
+slick.dbs.default.db.driver = org.sqlite.JDBC
+slick.dbs.default.db.url = "jdbc:sqlite:"${data.path}
+play.evolutions.db.default.autoApply = true

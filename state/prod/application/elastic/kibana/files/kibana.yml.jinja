@@ -1,0 +1,10 @@
+{% set data = salt['pillar.get']('elastic:kibana:config') -%}
+server.host: "{{ data['server']['host'] }}"
+server.port: {{ data['server']['port'] }}
+server.basePath: "{{ data['server']['basePath'] }}"
+server.maxPayloadBytes: {{ data['server']['maxPayloadBytes'] }}
+elasticsearch.url: "{{ data['elasticsearch']['url'] }}"
+kibana.index: "{{ data['kibana']['index'] }}"
+elasticsearch.pingTimeout: {{ data['elasticsearch']['pingTimeout'] }}
+elasticsearch.requestTimeout: {{ data['elasticsearch']['requestTimeout'] }}
+elasticsearch.startupTimeout: {{ data['elasticsearch']['startupTimeout'] }}

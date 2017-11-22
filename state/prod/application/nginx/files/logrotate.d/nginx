@@ -1,0 +1,14 @@
+/opt/nginx/logs/*.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    copytruncate
+    create 644 root root
+    sharedscripts
+    postrotate
+        [ -s /opt/nginx/logs/nginx.pid ] && kill -USR1 `cat /opt/nginx/logs/nginx.pid`
+    endscript
+}

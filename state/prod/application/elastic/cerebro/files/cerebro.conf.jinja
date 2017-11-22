@@ -1,0 +1,8 @@
+{% set data = salt['pillar.get']('elastic:cerebro:config:supervisor:cerebro') -%}
+[program:cerebro]
+command=/opt/cerebro/bin/cerebro -Dhttp.port={{ data['http']['port'] }} -Dhttp.address={{ data['http']['address'] }} -Dpidfile.path=/dev/null
+directory=/opt/cerebro/bin/
+user=root
+autostart = true
+autorestart = true
+startsecs = 5
